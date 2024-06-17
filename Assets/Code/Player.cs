@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -14,11 +16,15 @@ public class Player : MonoBehaviour
     [SerializeField] float speedDecrease = 5f;
     [SerializeField] GameObject firball;
     [SerializeField] Transform attackPoint;
+    [SerializeField] TextMeshProUGUI _text;
+    [SerializeField] Slider slider;
+
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-        print("Здоровье" + health);
+        //print("Здоровье" + health);
+        slider.value = health;
         if (health <= 0)
         {
             int sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -28,7 +34,9 @@ public class Player : MonoBehaviour
     public void CollectCoins()
     {
         coins++;
-        print("Кол-во монеток: " + coins);
+        _text.text = coins.ToString();
+        //print("Кол-во монеток: " + coins);
+
     }
     void Start()
     {
